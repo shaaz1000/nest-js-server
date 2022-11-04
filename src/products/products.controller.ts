@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ProductsService } from './products.service';
 
 // filter for route that starts with products
@@ -31,5 +31,10 @@ export class ProductsController {
         @Body('price') prodPrice: number
     ) {
         return this.productsService.updateProduct(productId, prodTitle, prodDescription, prodPrice)
+    }
+
+    @Delete(":id")
+    deleteProduct(@Param("id") prodId: string) {
+         return this.productsService.deleteProduct(prodId)
     }
 }
